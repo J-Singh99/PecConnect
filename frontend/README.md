@@ -1,0 +1,1 @@
+Run npm install and then npm start after going into the directory
