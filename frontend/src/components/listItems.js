@@ -3,11 +3,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
+import DonutLargeIcon from '@material-ui/icons/DonutLarge';
+import TableChartIcon from '@material-ui/icons/TableChart';
 import LayersIcon from '@material-ui/icons/Layers';
-
+import GradeIcon from '@material-ui/icons/Grade';
 
 
 export const mainListItems = (
@@ -20,7 +19,7 @@ export const mainListItems = (
     </ListItem>
     <ListItem button  component="a" {...{href:'/attendance'}} >
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <DonutLargeIcon />
       </ListItemIcon>
       <ListItemText primary="Attendance" />
      </ListItem> 
@@ -28,14 +27,14 @@ export const mainListItems = (
       
       
         <ListItemIcon>
-          <PeopleIcon />
+          <GradeIcon/>
         </ListItemIcon>
         <ListItemText primary="Grades" />
     </ListItem>
 
     <ListItem button  component="a" {...{href:'/timetable'}} >
       <ListItemIcon>
-        <BarChartIcon />
+        <TableChartIcon/>
       </ListItemIcon>
         <ListItemText primary="Time Table" />
     </ListItem>
