@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link'
-import {Switch,Route, Redirect} from 'react-router-dom';
+import {Switch,Route} from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -97,7 +97,6 @@ export default function Main() {
             <Route exact path="/attendance" component={()=><Attendance classes = {classes}/>}/>
             <Route exact path="/grades" component={()=><Grades classes = {classes}/>}/>
             <Route exact path="/timetable" component={()=><Timetable classes = {classes}/>}/>
-            <Redirect to = "/dashboard" />
           </Switch>
         </Container>
         <Box pt={5}>

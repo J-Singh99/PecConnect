@@ -1,29 +1,18 @@
 import React from 'react';
 import Main from './components/Main';
 import {BrowserRouter} from 'react-router-dom';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+// import Home from './components/Home';
+// import {Switch,Route, Redirect} from 'react-router-dom';
 function App() {
-
-  const theme = React.useMemo(
-    () =>
-      createMuiTheme({
-        palette: {
-          type: 'light',
-        },
-      }),
-    [prefersDarkMode],
-  );
-
+  // image url https://source.unsplash.com/random
   return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <div>
-          <Main/>
-        </div>
-      </BrowserRouter>
-    </ThemeProvider>
-    
+    <BrowserRouter>
+      <div>
+        <Main/>
+      </div>
+    </BrowserRouter>
+  
     
   );
 }
