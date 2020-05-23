@@ -17,13 +17,13 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
-    <ListItem button  component="a" {...{href:'/attendance'}} >
+    <ListItem button  component="a" {...{href:'/dashboard/attendance'}} >
       <ListItemIcon>
         <DonutLargeIcon />
       </ListItemIcon>
       <ListItemText primary="Attendance" />
      </ListItem> 
-    <ListItem button  component="a" {...{href:'/grades'}} >
+    <ListItem button  component="a" {...{href:'/dashboard/grades'}} >
       
       
         <ListItemIcon>
@@ -32,7 +32,7 @@ export const mainListItems = (
         <ListItemText primary="Grades" />
     </ListItem>
 
-    <ListItem button  component="a" {...{href:'/timetable'}} >
+    <ListItem button  component="a" {...{href:'/dashboard/timetable'}} >
       <ListItemIcon>
         <TableChartIcon/>
       </ListItemIcon>

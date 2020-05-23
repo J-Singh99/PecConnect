@@ -93,10 +93,10 @@ export default function Main() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Switch>
-            <Route path="/dashboard" component={()=><Dashboard classes = {classes}/>}/>
-            <Route exact path="/attendance" component={()=><Attendance classes = {classes}/>}/>
-            <Route exact path="/grades" component={()=><Grades classes = {classes}/>}/>
-            <Route exact path="/timetable" component={()=><Timetable classes = {classes}/>}/>
+            <Route exact path="/dashboard" component={()=><Dashboard classes = {classes}/>}/>
+            <Route exact path="/dashboard/attendance" component={()=><Attendance classes = {classes}/>}/>
+            <Route exact path="/dashboard/grades" component={()=><Grades classes = {classes}/>}/>
+            <Route exact path="/dashboard/timetable" component={()=><Timetable classes = {classes}/>}/>
           </Switch>
         </Container>
         <Box pt={5}>
