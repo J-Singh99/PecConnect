@@ -48,6 +48,7 @@ export default function Home(props){
             <Button color="inherit" component="a" {...{href:'/dashboard'}}>Dashboard</Button>
             <Button color ="inherit" component="a" {...{href:'/about'}} >About</Button>
             <Button color="inherit" component="a" {...{href:'/loginclient'}}> Login </Button>
+            <Button color="inherit" component="a" {...{href:'/signup'}}> Sign Up </Button>
             </Toolbar>
           </AppBar>
         </ElevationScroll>
