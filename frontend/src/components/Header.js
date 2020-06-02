@@ -47,7 +47,7 @@ export default function Home(props){
             <Typography variant="h6" className={classes.title}>College++</Typography>
             <Button color="inherit" component="a" {...{href:'/dashboard'}}>Dashboard</Button>
             <Button color ="inherit" component="a" {...{href:'/about'}} >About</Button>
-            <Button color="inherit" component="a" {...{href:'/login'}}> Login </Button>
+            <Button color="inherit" component="a" {...{href:'/loginclient'}}> Login </Button>
             </Toolbar>
           </AppBar>
         </ElevationScroll>
