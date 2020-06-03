@@ -40,12 +40,35 @@ User
     => Programme
     => Stream
     => Semester
-    => 
-
-
+    => Link to Students DB
 
 -> Faculty
--> Administration
--> Club
--> Library
+	=> First Name
+    => Middle Name
+    => Last Name (Remaining Name)
+    => Qualification (highest)
+    => D.O.B
+    => Gender
+    => Position
+    => Salary
+    => Link to Faculty DB
 
+
+-> Administration
+	=> First Name
+    => Middle Name
+    => Last Name (Remaining Name)
+    => Qualification (highest)
+    => D.O.B
+    => Gender
+    => Salary
+    =>  
+
+
+-> Club
+	=> Name
+	=> Club/Society
+	=> Secy
+	=> J-Secy
+	=> Link to Club DB
+	=> Budget 

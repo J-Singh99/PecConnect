@@ -46,58 +46,55 @@ class Student(db.Model):
     => Category
     => Programme
     => Stream
-    => 	
+    => Semester
+    => Link to Students DB 	
 
 	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
 
 
-class Student(db.Model):
-	__tablename__ = 'student'
+class Faculty(db.Model):
+	__tablename__ = 'faculty'
 
 	id = db.Column(db.Integer, primary_key=True)
     => First Name
     => Middle Name
     => Last Name (Remaining Name)
+    => Qualification (highest)
     => D.O.B
     => Gender
-    => Category
-    => Programme
-    => Stream
-    => 	
+    => Position
+    => Salary
+    => Link to Faculty DB 	
 
 	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
 
 
-class Student(db.Model):
-	__tablename__ = 'student'
+class Administration(db.Model):
+	__tablename__ = 'administration'
 
 	id = db.Column(db.Integer, primary_key=True)
     => First Name
     => Middle Name
     => Last Name (Remaining Name)
+    => Qualification (highest)
     => D.O.B
     => Gender
-    => Category
-    => Programme
-    => Stream
+    => Salary
     => 	
 
 	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
 
 
-class Student(db.Model):
-	__tablename__ = 'student'
+class Club(db.Model):
+	__tablename__ = 'club'
 
 	id = db.Column(db.Integer, primary_key=True)
-    => First Name
-    => Middle Name
-    => Last Name (Remaining Name)
-    => D.O.B
-    => Gender
-    => Category
-    => Programme
-    => Stream
-    => 	
+    => Name
+	=> Club/Society
+	=> Secy
+	=> J-Secy
+	=> Link to Club DB
+	=> Budget 	
 
 	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
 
