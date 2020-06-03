@@ -35,7 +35,13 @@ User
     => Middle Name
     => Last Name (Remaining Name)
     => D.O.B
+    => Gender
+    => Category
+    => Programme
+    => Stream
+    => Semester
     => 
+
 
 
 -> Faculty

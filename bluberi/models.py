@@ -20,17 +20,17 @@ class User(db.Model, UserMixin):
 	password = db.Column(db.String(60), nullable=False)
 	
 
-	studentTable = db.relationship('Student', uselist=False, backref='mainUserInfo', lazy=True)
-	facultyTable = db.relationship('Faculty', uselist=False, backref='mainUserInfo', lazy=True)
-	adminTable = db.relationship('Administration', uselist=False, backref='mainUserInfo', lazy=True)
-	clubTable = db.relationship('Club', uselist=False, backref='mainUserInfo', lazy=True)
+	studentTable = db.relationship('Student', nullable=True, uselist=False, backref='mainUserInfo', lazy=True)
+	facultyTable = db.relationship('Faculty', nullable=True, uselist=False, backref='mainUserInfo', lazy=True)
+	adminTable = db.relationship('Administration', nullable=True, uselist=False, backref='mainUserInfo', lazy=True)
+	clubTable = db.relationship('Club', nullable=True, uselist=False, backref='mainUserInfo', lazy=True)
 
 
 #	overtimgInfo = db.relationship('InputInformation', backref='hidder', lazy=True)
 #	revealimgInfo = db.relationship('CovertInput', backref='revealer', lazy=True)
 
 	def __repr__(self):
-		return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+		return f"User('{self.username}', '{self.email}')"
 
 
 
@@ -38,8 +38,66 @@ class Student(db.Model):
 	__tablename__ = 'student'
 
 	id = db.Column(db.Integer, primary_key=True)
-	covertImg = db.Column(db.String(20), nullable=False)
-	
+    => First Name
+    => Middle Name
+    => Last Name (Remaining Name)
+    => D.O.B
+    => Gender
+    => Category
+    => Programme
+    => Stream
+    => 	
+
+	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
+
+
+class Student(db.Model):
+	__tablename__ = 'student'
+
+	id = db.Column(db.Integer, primary_key=True)
+    => First Name
+    => Middle Name
+    => Last Name (Remaining Name)
+    => D.O.B
+    => Gender
+    => Category
+    => Programme
+    => Stream
+    => 	
+
+	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
+
+
+class Student(db.Model):
+	__tablename__ = 'student'
+
+	id = db.Column(db.Integer, primary_key=True)
+    => First Name
+    => Middle Name
+    => Last Name (Remaining Name)
+    => D.O.B
+    => Gender
+    => Category
+    => Programme
+    => Stream
+    => 	
+
+	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
+
+
+class Student(db.Model):
+	__tablename__ = 'student'
+
+	id = db.Column(db.Integer, primary_key=True)
+    => First Name
+    => Middle Name
+    => Last Name (Remaining Name)
+    => D.O.B
+    => Gender
+    => Category
+    => Programme
+    => Stream
+    => 	
 
 	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
 
@@ -74,12 +132,6 @@ class Final_Stego(db.Model):
 	overtImgID = db.Column(db.Integer, db.ForeignKey('inputinformation.id'), unique=True, nullable=False)
 
 
-
-
-
-
-
-
 class CovertInput(db.Model):
 	__tablename__ = 'covertinput'
 
@@ -105,4 +157,3 @@ class RevealedInfo(db.Model):
 	
 	cvtImgID = db.Column(db.Integer, db.ForeignKey('covertinput.id'), unique=True, nullable=False)
 '''
-
