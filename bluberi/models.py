@@ -12,18 +12,36 @@ def load_user(user_id):
 
 
 class User(db.Model, UserMixin):
+	
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(20), unique=True, nullable=False)
 	email = db.Column(db.String(120), unique=True, nullable=False)
-	image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+	profile_pic = db.Column(db.String(20), nullable=False, default='default.jpg')
 	password = db.Column(db.String(60), nullable=False)
 	
-	overtimgInfo = db.relationship('InputInformation', backref='hidder', lazy=True)
-	revealimgInfo = db.relationship('CovertInput', backref='revealer', lazy=True)
+
+	studentTable = db.relationship('Student', uselist=False, backref='mainUserInfo', lazy=True)
+	facultyTable = db.relationship('Faculty', uselist=False, backref='mainUserInfo', lazy=True)
+	adminTable = db.relationship('Administration', uselist=False, backref='mainUserInfo', lazy=True)
+	clubTable = db.relationship('Club', uselist=False, backref='mainUserInfo', lazy=True)
+
+
+#	overtimgInfo = db.relationship('InputInformation', backref='hidder', lazy=True)
+#	revealimgInfo = db.relationship('CovertInput', backref='revealer', lazy=True)
 
 	def __repr__(self):
 		return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
+
+
+class Student(db.Model):
+	__tablename__ = 'student'
+
+	id = db.Column(db.Integer, primary_key=True)
+	covertImg = db.Column(db.String(20), nullable=False)
+	
+
+	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
 
 
 
