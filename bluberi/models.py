@@ -55,6 +55,8 @@ class Programme(enum.Enum):
     B_Tech = 'B'
     M_Tech = 'M'
     Ph_D = 'P'
+
+
 class Student(db.Model):
 	__tablename__ = 'student'
 
@@ -62,14 +64,14 @@ class Student(db.Model):
     first_name = db.Column(db.String(20), unique=False, nullable=False)
     middle_name = db.Column(db.String(20), unique=False, nullable=True)
     last_name = db.Column(db.String(20), unique=False, nullable=False)
-    => D.O.B
+    ========>> D.O.B <<=======
     gender = db.Column(db.Enum(Gender), default=Gender.retard, unique=False, nullable=False)
+    SID = db.Column(db.String(8), unique=True, nullable=False)
     category = db.Column(db.Enum(Category), default=Category.general, unique=False, nullable=False)
     programme = db.Column(db.Enum(Programme), default=Programme.B_Tech, unique=False, nullable=False)
     stream = db.Column(db.Enum(Stream), default=Stream.Production, unique=False, nullable=False)
-    semester = db.Column(db.Float, primary_key=True)
-    => CG
-    => 
+    CG = db.Column(db.Float, nullable=True, unique=False)
+    semester = db.Column(db.Integer, nullable=True, unique=False)
 
 	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
 
@@ -78,15 +80,15 @@ class Faculty(db.Model):
 	__tablename__ = 'faculty'
 
 	id = db.Column(db.Integer, primary_key=True)
-    => First Name
-    => Middle Name
-    => Last Name (Remaining Name)
-    => Qualification (highest)
-    => D.O.B
-    => Gender
-    => Position
-    => Salary
-    => Main Branch/Stream 	
+    first_name = db.Column(db.String(20), unique=False, nullable=False)
+    middle_name = db.Column(db.String(20), unique=False, nullable=True)
+    last_name = db.Column(db.String(20), unique=False, nullable=False)
+    ========>> D.O.B <<=======
+    ========>> Qualification (highest) <<=======
+    gender = db.Column(db.Enum(Gender), default=Gender.retard, unique=False, nullable=False)
+    position = db.Column(db.String(20), unique=False, nullable=False)
+    salary = db.Column(db.Float, nullable=False, unique=False)
+    main_stream = db.Column(db.Enum(Stream), default=Stream.Production, unique=False, nullable=False) 	
 
 	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
 
@@ -95,14 +97,14 @@ class Administration(db.Model):
 	__tablename__ = 'administration'
 
 	id = db.Column(db.Integer, primary_key=True)
-    => First Name
-    => Middle Name
-    => Last Name (Remaining Name)
-    => Qualification (highest)
-    => D.O.B
-    => Gender
-    => Salary
-    => 	
+    first_name = db.Column(db.String(20), unique=False, nullable=False)
+    middle_name = db.Column(db.String(20), unique=False, nullable=True)
+    last_name = db.Column(db.String(20), unique=False, nullable=False)
+    ========>> D.O.B <<=======
+    ========>> Qualification (highest) <<=======
+    gender = db.Column(db.Enum(Gender), default=Gender.retard, unique=False, nullable=False)
+    salary = db.Column(db.Float, nullable=False, unique=False)
+     	
 
 	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
 
@@ -111,12 +113,11 @@ class Club(db.Model):
 	__tablename__ = 'club'
 
 	id = db.Column(db.Integer, primary_key=True)
-    => Name
+    name = db.Column(db.String(20), unique=False, nullable=False)
 	=> Club/Society
-	=> Secy
-	=> J-Secy
-	=> Link to Club DB
-	=> Budget 	
+	secy_SID = db.Column(db.String(8), unique=True, nullable=False)
+	j_secy_SID = db.Column(db.String(8), unique=True, nullable=False)
+	budget = db.Column(db.Float, nullable=False, unique=False)
 
 	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
 
