@@ -25,29 +25,51 @@ class User(db.Model, UserMixin):
 	adminTable = db.relationship('Administration', nullable=True, uselist=False, backref='mainUserInfo', lazy=True)
 	clubTable = db.relationship('Club', nullable=True, uselist=False, backref='mainUserInfo', lazy=True)
 
-
-#	overtimgInfo = db.relationship('InputInformation', backref='hidder', lazy=True)
-#	revealimgInfo = db.relationship('CovertInput', backref='revealer', lazy=True)
-
 	def __repr__(self):
 		return f"User('{self.username}', '{self.email}')"
 
 
-
+class Gender(enum.Enum):
+    male = 'M'
+    female = 'F'
+    retard = 'R'
+class Category(enum.Enum):
+    general = 'G'
+    DASA = 'D'
+    SC_ST = 'S'
+class Programme(enum.Enum):
+    B_Tech = 'B'
+    M_Tech = 'M'
+    Ph_D = 'P'
+class Stream(enum.Enum):
+    Aero = 'Aero'
+    CompScience = 'C.S.E'
+    Mechanical = 'Mech'
+    Metalurgy = 'Meta'
+    Production = 'Prod'
+class Programme(enum.Enum):
+    B_Tech = 'B'
+    M_Tech = 'M'
+    Ph_D = 'P'
+class Programme(enum.Enum):
+    B_Tech = 'B'
+    M_Tech = 'M'
+    Ph_D = 'P'
 class Student(db.Model):
 	__tablename__ = 'student'
 
 	id = db.Column(db.Integer, primary_key=True)
-    => First Name
-    => Middle Name
-    => Last Name (Remaining Name)
+    first_name = db.Column(db.String(20), unique=False, nullable=False)
+    middle_name = db.Column(db.String(20), unique=False, nullable=True)
+    last_name = db.Column(db.String(20), unique=False, nullable=False)
     => D.O.B
-    => Gender
-    => Category
-    => Programme
-    => Stream
-    => Semester
-    => Link to Students DB 	
+    gender = db.Column(db.Enum(Gender), default=Gender.retard, unique=False, nullable=False)
+    category = db.Column(db.Enum(Category), default=Category.general, unique=False, nullable=False)
+    programme = db.Column(db.Enum(Programme), default=Programme.B_Tech, unique=False, nullable=False)
+    stream = db.Column(db.Enum(Stream), default=Stream.Production, unique=False, nullable=False)
+    semester = db.Column(db.Float, primary_key=True)
+    => CG
+    => 
 
 	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
 
@@ -64,7 +86,7 @@ class Faculty(db.Model):
     => Gender
     => Position
     => Salary
-    => Link to Faculty DB 	
+    => Main Branch/Stream 	
 
 	userInfo = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
 
@@ -103,28 +125,38 @@ class Club(db.Model):
 
 '''
 from datetime import datetime
+
 class User(db.Model):
     _tablename_ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
+    role = db.Column(db.String(50), nullable=False)
+
+
+
+
     role = db.relationship('Role', secondary='user_role', uselist= False)
     profile = db.relationship('Profile',uselist = False, backref = 'user',lazy = True)
+
 class Role(db.Model):
     _tablename_ = 'role'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=True)
+
 class UserRoles(db.Model):
     _tablename_ = 'user_role'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'))
     role_id = db.Column(db.Integer, db.ForeignKey('role.id', ondelete='CASCADE'))
+
 class Department(db.Model):
     _tablename_ = 'dept'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     members = db.relationship('Profile',backref='members', lazy = True )
+
 class CourseEnrollment(db.Model):
     _tablename_='enrolled'
     id = db.Column(db.Integer,primary_key=True)
@@ -150,6 +182,7 @@ class Teaches(db.Model):
     teacher_id = db.Column(db.Integer, db.ForeignKey('profile.unique_id',ondelete='CASCADE'))
     course_id = db.Column(db.Integer, db.ForeignKey('course.id',ondelete = 'CASCADE'))
     year = db.Column(db.Interger, nullable = False)
+
 class Profile(db.Model):
     _tablename_='profile'
     unique_id = db.Column(db.Integer, primary_key = True)
