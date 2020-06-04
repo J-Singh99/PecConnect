@@ -4,6 +4,9 @@ import CardHeader from './Card/CardHeader';
 import CardBody from './Card/CardBody';
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
+import CanvasJSReact from '../assets/canvasjs.react';
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var styles = {
     cardTitle: {
         marginTop: "0",
@@ -16,29 +19,43 @@ var styles = {
 };
 const useStyles = makeStyles(styles);
 export default function Attendance(props) {
-    const classes = useStyles(); ;
+    const classes = useStyles();
+    const d = [
+      { name: "Attended", y: 3500/40 },
+      { name: "Missed", y: 500/40 },
+    ];
+    const options = {
+      backgroundColor:null,
+      animationEnabled: true,
+      height:200,
+			data: [{
+				type: "doughnut",
+				showInLegend: true,
+				indexLabel: "{name}: {y}",
+				yValueFormatString: "#,###'%'",
+				dataPoints: d
+			}]
+		}
     return(
       <div>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4}>
             <Card>
-              <CardHeader color="danger">
-                <h4 className={classes.cardTitle}>Machine Learning</h4>
-                <p>62%</p>
+              <CardHeader>
+              <CanvasJSChart options = {options}/>
               </CardHeader>
               <CardBody>
-              Total: bla | Attended: 0 | Missed: 0
+                <h2 className={classes.cardTitle}>Machine Learning</h2>
               </CardBody>
             </Card>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Card>
-              <CardHeader color="success">
-                <h4 className={classes.cardTitle}>Database Management Systems</h4>
-                <p>75%</p>
+              <CardHeader>
+              <CanvasJSChart options = {options}/>
               </CardHeader>
               <CardBody>
-               Total: bla | Attended: 0 | Missed: 0
+              <h2 className={classes.cardTitle}>Database Management Systems</h2>
               </CardBody>
             </Card>
           </Grid>
