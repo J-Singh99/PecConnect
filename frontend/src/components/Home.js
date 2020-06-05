@@ -12,8 +12,6 @@ import Container from '@material-ui/core/Container';
 // import Link from '@material-ui/core/Link';
 
 import Header from './Header';
-import jwt_decode from 'jwt-decode';
-
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
@@ -52,15 +50,6 @@ const cards = [1];
 
 const HomeContent = (props) => {
   const classes = useStyles();
-  let token = localStorage.getItem('react_usertoken');
-  console.log(token)
-  let details = ''
-  let result = '';
-  if (token!=null){
-    details = jwt_decode(token)['identity'];
-    console.log(details);
-    result = `You are ${details.username} with email: ${details.email}`;
-  }
   return (
     <React.Fragment>
       <Header/>
@@ -76,7 +65,6 @@ const HomeContent = (props) => {
               <Typography variant="h5" align="center" color="textSecondary" paragraph>
               The one stop for all your college needs!
               </Typography>
-              {result}
             </Container>
           </div>
           <Container className={classes.cardGrid} maxWidth="md">

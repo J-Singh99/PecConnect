@@ -8,20 +8,33 @@ from rest_framework.views import APIView
 from knox.auth import TokenAuthentication
 from knox.models import AuthToken
 class AttendanceViewSet(APIView):
-    authentication_classes = [TokenAuthentication]
     permission_classes = [
         permissions.IsAuthenticated
     ]
     serializer_class =  AttendanceSerializer
     def get(self, request, format = 'json'):
         profile = Profile.objects.filter(user = request.user)[0]
-        courses_enrolled = CourseEnrollment.objects.filter(student = profile)
+        courses_enrolled = CourseEnrollment.objects.filter(student = profile, semester = profile.semester)
         course_attendances = []
         for x in courses_enrolled:
-            course_attendances.append((CourseSerializer(x.course).data,AttendanceSerializer(Attendance.objects.get(uid = x)).data))
+            course_attendances.append(AttendanceSerializer(Attendance.objects.get(uid = x)).data)
         data = {}
-        data['profile'] = ProfileSerializer(profile).data
-        data['Course and Their Attendances']= course_attendances
+        data['Course and Their Attendances'] = course_attendances
+        return Response(data)
+
+class GradeAPI(APIView):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    serializer_class =  AttendanceSerializer
+    def get(self, request, format = 'json'):
+        profile = Profile.objects.filter(user = request.user)[0]
+        courses_enrolled = CourseEnrollment.objects.filter(student = profile, semester = profile.semester)
+        course_attendances = []
+        for x in courses_enrolled:
+            course_attendances.append(GradeSerializer(Grades.objects.get(uid = x)).data)
+        data = {}
+        data['Course and Their Grades'] = course_attendances
         return Response(data)
 
 class LoginAPI(generics.GenericAPIView):
@@ -45,7 +58,6 @@ class UserAPI(generics.RetrieveAPIView):
   def get_object(self):
     profile = Profile.objects.filter(user = self.request.user)[0]
     return profile
-
 
     
     

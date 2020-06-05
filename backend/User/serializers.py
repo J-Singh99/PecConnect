@@ -19,6 +19,7 @@ class LoginSerializer(serializers.Serializer):
         raise serializers.ValidationError("Incorrect Credentials")
 
 class ProfileSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
     class Meta:
         model = Profile
         exclude = ['id']
@@ -29,7 +30,20 @@ class CourseSerializer(serializers.ModelSerializer):
         model = Course
         exclude = ['id']
 
+class EnrollmentSerializer(serializers.ModelSerializer):
+    course = CourseSerializer()
+
+    class Meta:
+        model = CourseEnrollment
+        exclude = ['id', 'semester','student']
 class AttendanceSerializer(serializers.ModelSerializer):
+    uid = EnrollmentSerializer()
     class Meta:
         model = Attendance
-        exclude = ['id','uid']
+        exclude = ['id']
+
+class GradeSerializer(serializers.ModelSerializer):
+    uid = EnrollmentSerializer()
+    class Meta:
+        model = Grades
+        exclude = ['id']

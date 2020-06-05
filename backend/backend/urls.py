@@ -21,8 +21,9 @@ from knox import views as knox_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('details/',views.AttendanceViewSet.as_view(), name = 'details'),
+    path('attendance/',views.AttendanceViewSet.as_view(), name = 'details'),
     path('login/',views.LoginAPI.as_view(), name = "login"),
     path('profile/',views.UserAPI.as_view(), name = "profile"),
     path('logout/',knox_views.LogoutView.as_view(), name='knox_logout'),
+    path('grades/',views.GradeAPI.as_view(), name = 'grades'),
 ]

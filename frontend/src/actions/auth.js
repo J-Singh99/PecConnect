@@ -88,3 +88,22 @@ export const logout = ()=>(dispatch, getState)=>{
             console.log(err);
         })
 }
+
+export const tokenConfig = (getState) => {
+    // Get token from state
+    const token = getState().auth.token;
+  
+    // Headers
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+  
+    // If token, add to headers config
+    if (token) {
+      config.headers['Authorization'] = `Token ${token}`;
+    }
+  
+    return config;
+  };

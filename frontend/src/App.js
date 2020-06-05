@@ -6,7 +6,6 @@ import Login from './components/LoginContent';
 import SignUp from './components/SignUpComponent';
 import {Provider} from 'react-redux';
 import store from './store';
-import PrivateRoute from './components/PrivateRoute';
 import {loadUser} from './actions/auth';
 class App extends React.Component{
   componentDidMount(){
@@ -17,7 +16,7 @@ class App extends React.Component{
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <PrivateRoute path="/dashboard" component={()=><Main/>}/>
+          <Route path="/dashboard" component={()=><Main/>}/>
           <Route exact path="/" component={Home}/>
           <Route exact path= "/loginclient" component={Login}/>
           <Route exact path ="/signup" component={SignUp}/>
