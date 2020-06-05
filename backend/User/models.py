@@ -54,7 +54,6 @@ class Assessment(models.Model):
 class Grades(models.Model):
     uid = models.OneToOneField(CourseEnrollment, on_delete = models.CASCADE)
     current_grade = models.CharField(max_length = 3)
-
     
 
 
