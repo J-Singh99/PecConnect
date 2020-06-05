@@ -123,6 +123,21 @@ class Club(db.Model):
 
 
 
+class TimeTable(db.Model)
+	__tablename__ = 'timetabe'
+
+	id = db.Column(db.Integer, primary_key=True)
+    
+
+    name = db.Column(db.String(20), unique=False, nullable=False)
+	=> Club/Society
+	
+
+
+
+
+
+
 
 '''
 from datetime import datetime
