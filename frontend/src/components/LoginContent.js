@@ -12,7 +12,11 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Header from './Header';
-import {login} from './UserFunctions';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {login} from '../actions/auth';
+import {Redirect} from 'react-router-dom';
+import compose from 'recompose/compose';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -61,11 +65,15 @@ class  Login extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      email:'',
+      username:'',
       password : ''
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+  static propTypes= {
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
   }
   onChange(event) {
     this.setState(
@@ -76,13 +84,19 @@ class  Login extends Component{
   onSubmit(event) {
     event.preventDefault();
     const user = {
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password
     };
-    login(user)
+    
+    this.props.login(user);
   }
   render() {
-    const {classes} = this.props;
+    if (this.props.isAuthenticated){
+      return <Redirect
+        to='/'
+      />
+    }
+    const { classes } = this.props;
     return (
       <React.Fragment>
           <Header/>
@@ -105,10 +119,9 @@ class  Login extends Component{
                           margin="normal"
                           required
                           fullWidth
-                          id="email"
-                          label="Email Address"
-                          name="email"
-                          autoComplete="email"
+                          id="username"
+                          label="Username"
+                          name="username"
                           autoFocus
                           onChange={this.onChange}
                       />
@@ -149,4 +162,11 @@ class  Login extends Component{
 
 }
 
-export default withStyles(useStyles)(Login);
+const mapStateToProps = state=>({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default compose(
+  withStyles(useStyles),
+  connect(mapStateToProps,{login})
+)(Login);
