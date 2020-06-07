@@ -47,3 +47,8 @@ class GradeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Grades
         exclude = ['id']
+
+class TimeTableSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TimeTable
+        exclude = ['id']

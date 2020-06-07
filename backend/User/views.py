@@ -59,6 +59,17 @@ class UserAPI(generics.RetrieveAPIView):
     profile = Profile.objects.filter(user = self.request.user)[0]
     return profile
 
-    
+class TimeTableAPI(APIView):
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+    serializer_class =  TimeTableSerializer
+    def get(self, request, format = 'json'):
+        profile = Profile.objects.filter(user = request.user)[0]
+        timetable = TimeTable.objects.filter(semester = profile.semester, programme = profile.programme, department = profile.department)
+        data = []
+        for x in timetable:
+            data.append(TimeTableSerializer(x).data)
+        return Response({"timetable":data})
     
 

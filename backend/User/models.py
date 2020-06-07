@@ -25,17 +25,13 @@ class Course(models.Model):
     lectures = models.IntegerField()
     tutorials = models.IntegerField()
     practicals = models.IntegerField()
-    
-class Teaches(models.Model):
-    teacher = models.ForeignKey(Profile, on_delete= models.CASCADE)
-    course = models.ForeignKey(Course, on_delete = models.CASCADE)
-    semester = models.IntegerField(null = True)
 
 
 class CourseEnrollment(models.Model):
-    student = models.ForeignKey(Profile, on_delete= models.CASCADE)
+    student = models.ForeignKey(Profile, on_delete= models.CASCADE, related_name = 'student')
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
     semester = models.IntegerField(null = True)
+    teacher = models.ForeignKey(Profile, on_delete = models.SET_NULL, null = True, related_name = "teacher")
 
 class Attendance(models.Model):
     uid = models.OneToOneField(CourseEnrollment,on_delete = models.CASCADE)
@@ -59,13 +55,14 @@ class TimeTable(models.Model):
     semester = models.IntegerField()
     department = models.ForeignKey(Department, on_delete = models.CASCADE)
     programme = models.CharField(max_length = 2, choices = [('B','B.Tech'),('M','M.Tech'),('P','PhD'),('NA','Not Applicable')], default = 'NA')
-    subject_1 = models.CharField(max_length = 20)
-    subject_2 = models.CharField(max_length = 20)
-    subject_3 = models.CharField(max_length = 20)
-    subject_4 = models.CharField(max_length = 20)
-    subject_5 = models.CharField(max_length = 20)
-    subject_6 = models.CharField(max_length = 20)
-    subject_7 = models.CharField(max_length = 20)
-    subject_8 = models.CharField(max_length = 20)
+    day = models.CharField(max_length = 10, null = True)
+    subject_1 = models.CharField(max_length = 20,null = True)
+    subject_2 = models.CharField(max_length = 20,null = True)
+    subject_3 = models.CharField(max_length = 20,null = True)
+    subject_4 = models.CharField(max_length = 20,null = True)
+    subject_5 = models.CharField(max_length = 20,null = True)
+    subject_6 = models.CharField(max_length = 20,null = True)
+    subject_7 = models.CharField(max_length = 20,null = True)
+    subject_8 = models.CharField(max_length = 20,null = True)
 
     
