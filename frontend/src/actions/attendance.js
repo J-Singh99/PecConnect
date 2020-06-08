@@ -15,7 +15,7 @@ export const getAttendance = ()=> (dispatch, getState)=>{
     
     })
     .catch(err=>{
-        // dispatch(returnErrors(err.response.data, err.response.status));
+        dispatch(returnErrors(err.response.data, err.response.status));
         console.log(err);
     })
 }

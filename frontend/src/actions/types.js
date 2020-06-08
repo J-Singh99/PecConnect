@@ -17,3 +17,9 @@ export const CREATE_MESSAGE = 'CREATE_MESSAGE';
 
 // GradesState Actions
 export const GET_GRADES = 'GET_GRADES';
+
+// TimeTable Actions
+export const GET_TIMETABLE = 'GET_TIMETABLE';
+
+//SGPA Actions
+export const GET_SGPA = 'GET_SGPA';

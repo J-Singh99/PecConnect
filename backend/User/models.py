@@ -20,6 +20,7 @@ class Profile(models.Model):
     user_group = models.CharField(max_length = 1, choices = [('S','Student'),('T','Teacher'),('A','Administration')])
 
 class Course(models.Model):
+    code = models.CharField(max_length = 15, null = True)
     name = models.CharField(max_length = 100)
     credits = models.IntegerField()
     lectures = models.IntegerField()
@@ -44,7 +45,7 @@ class Assessment(models.Model):
     uid = models.ForeignKey(CourseEnrollment, on_delete = models.CASCADE)
     name = models.TextField()
     weightage = models.DecimalField(max_digits = 3, decimal_places = 3)
-    marks_obtained = models.DecimalField(max_digits = 3, decimal_places = 3)
+    marks_obtained = models.DecimalField(max_digits = 5, decimal_places = 3)
     max_marks = models.DecimalField(max_digits = 3, decimal_places = 3)
 
 class Grades(models.Model):
@@ -65,4 +66,8 @@ class TimeTable(models.Model):
     subject_7 = models.CharField(max_length = 20,null = True)
     subject_8 = models.CharField(max_length = 20,null = True)
 
-    
+class SGPA(models.Model):
+    student = models.ForeignKey(Profile, on_delete = models.CASCADE)
+    semester = models.IntegerField()
+    sgpa = models.DecimalField(max_digits = 4, decimal_places = 2)
+    credits = models.IntegerField()

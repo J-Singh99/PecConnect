@@ -64,6 +64,7 @@ const HomeContent = (props) => {
               </Typography>
               <Typography variant="h5" align="center" color="textSecondary" paragraph>
               The one stop for all your college needs!
+              Black Lives Matter. Support the Equal Justice Initiative.
               </Typography>
             </Container>
           </div>

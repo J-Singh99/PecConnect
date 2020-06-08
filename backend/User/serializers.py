@@ -32,10 +32,9 @@ class CourseSerializer(serializers.ModelSerializer):
 
 class EnrollmentSerializer(serializers.ModelSerializer):
     course = CourseSerializer()
-
     class Meta:
         model = CourseEnrollment
-        exclude = ['id', 'semester','student']
+        exclude = ['id','student','teacher']
 class AttendanceSerializer(serializers.ModelSerializer):
     uid = EnrollmentSerializer()
     class Meta:
@@ -52,3 +51,9 @@ class TimeTableSerializer(serializers.ModelSerializer):
     class Meta:
         model = TimeTable
         exclude = ['id']
+
+class SgpaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SGPA
+        exclude = ['id','student']
+        depth = 1

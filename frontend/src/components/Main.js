@@ -39,7 +39,9 @@ function Copyright() {
 
 
 export default function Main() {
-  const classes = useStyles();
+  const classes = useStyles({
+    spacing: 8,
+  });
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);

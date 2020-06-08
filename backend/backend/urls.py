@@ -27,4 +27,7 @@ urlpatterns = [
     path('logout/',knox_views.LogoutView.as_view(), name='knox_logout'),
     path('grades/',views.GradeAPI.as_view(), name = 'grades'),
     path('timetable/',views.TimeTableAPI.as_view(), name = 'timetable'),
+    path('updateattendance/',views.UpdateAttendanceView.as_view(), name = 'attendance_update'),
+    path('sgpa/',views.SgpaAPI.as_view(), name = 'sgpa'),
 ]
+

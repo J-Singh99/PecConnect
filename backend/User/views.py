@@ -7,6 +7,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from knox.auth import TokenAuthentication
 from knox.models import AuthToken
+from rest_framework.exceptions import APIException
+from rest_framework import status
+
+class NotAllowedAPI(APIException):
+    status_code = 404
+    default_detail = 'You are not allowed to access this url.'
 class AttendanceViewSet(APIView):
     permission_classes = [
         permissions.IsAuthenticated
@@ -72,4 +78,32 @@ class TimeTableAPI(APIView):
             data.append(TimeTableSerializer(x).data)
         return Response({"timetable":data})
     
+class UpdateAttendanceView(APIView):
+    permissions = [
+        permissions.IsAuthenticated
+    ]
+    serializer_class = AttendanceSerializer
+
+    def post(self, request, *args, **kwargs):
+        if request.user.profile.user_group !='T':
+            return Response({"detail":"You are not authorized to make changes to the database"}, status.HTTP_401_UNAUTHORIZED)
+        data = request.data
+        attendance_sheet = data['attendance']
+        course = data['course']
+        semester = data['semester']
+        for x in attendance_sheet:
+            attendance_obj = Attendance.objects.filter(uid = CourseEnrollment.objects.filter(student = Profile.objects.filter(unique_id = x['sid'])[0],semester = semester, course = Course.objects.filter(code = course)[0])[0])[0]
+            attendance_obj.attended += x['attended']
+            attendance_obj.missed += x['missed']
+            attendance_obj.save()
+        return Response({"detail":"Succesfully added the attendance"}, status.HTTP_200_OK)
+
+class SgpaAPI(generics.ListAPIView):
+    permissions =[
+        permissions.IsAuthenticated
+    ]
+    serializer_class = SgpaSerializer
+    def get_queryset(self):
+        queryset = SGPA.objects.filter(student = self.request.user.profile)
+        return queryset
 
