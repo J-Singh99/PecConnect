@@ -45,7 +45,7 @@ class Header extends React.Component{
   }
   render() {
     const { classes } = this.props;
-    const {isAuthenticated, user}= this.props.auth;
+    const {isAuthenticated}= this.props.auth;
     const guestLinks = (
       <>
       <Button color="inherit" component="a" {...{href:'/loginclient'}}> Login </Button>
