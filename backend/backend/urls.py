@@ -29,5 +29,6 @@ urlpatterns = [
     path('timetable/',views.TimeTableAPI.as_view(), name = 'timetable'),
     path('updateattendance/',views.UpdateAttendanceView.as_view(), name = 'attendance_update'),
     path('sgpa/',views.SgpaAPI.as_view(), name = 'sgpa'),
+     path('slist/',views.StudentList.as_view(), name = 'slist'),
 ]
 

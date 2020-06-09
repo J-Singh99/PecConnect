@@ -1,0 +1,8 @@
+Django==3.0.5
+django-braces==1.14.0
+django-cors-headers==3.3.0
+django-crispy-forms==1.9.0
+django-mathfilters==1.0.0
+django-rest-knox==4.1.0
+django-storages==1.9.1
+djangorestframework==3.11.0

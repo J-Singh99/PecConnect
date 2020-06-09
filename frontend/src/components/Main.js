@@ -9,14 +9,12 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import {Switch,Route} from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems } from './listItems';
 import useStyles from '../styles/sidebarstyles';
 import Dashboard from './Dashboard';
@@ -85,14 +83,14 @@ class Main extends React.Component {
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar position="absolute" className={clsx(classes.appBar, this.open && classes.appBarShift)}>
+        <AppBar position="absolute" className={clsx(classes.appBar, this.state.open && classes.appBarShift)}>
           <Toolbar className={classes.toolbar}>
             <IconButton
               edge="start"
               color="inherit"
               aria-label="open drawer"
               onClick={this.handleDrawerOpen}
-              className={clsx(classes.menuButton, this.open && classes.menuButtonHidden)}
+              className={clsx(classes.menuButton, this.state.open && classes.menuButtonHidden)}
             >
               <MenuIcon />
             </IconButton>
@@ -100,17 +98,17 @@ class Main extends React.Component {
               Dashboard
             </Typography>
             <Button color="inherit" onClick={this.props.logout}> Logout</Button>
-            <IconButton color="inherit">
+            {/* <IconButton color="inherit">
               <Badge badgeContent={8} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
           </Toolbar>
         </AppBar>
         <Drawer
           variant="permanent"
           classes={{
-            paper: clsx(classes.drawerPaper, !this.open && classes.drawerPaperClose),
+            paper: clsx(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
           }}
           open={this.open}
         >

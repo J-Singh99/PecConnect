@@ -23,3 +23,6 @@ export const GET_TIMETABLE = 'GET_TIMETABLE';
 
 //SGPA Actions
 export const GET_SGPA = 'GET_SGPA';
+
+// STUDENT_LIST
+export const GET_LIST = 'GET_LIST';

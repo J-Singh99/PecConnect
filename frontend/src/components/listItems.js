@@ -5,7 +5,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import TableChartIcon from '@material-ui/icons/TableChart';
-import LayersIcon from '@material-ui/icons/Layers';
 import GradeIcon from '@material-ui/icons/Grade';
 
 
@@ -38,12 +37,7 @@ export const mainListItems = (
       </ListItemIcon>
         <ListItemText primary="Time Table" />
     </ListItem>
-    <ListItem button component="a" {...{href:'/dashboard'}} >
-        <ListItemIcon>
-          <LayersIcon />
-        </ListItemIcon>
-        <ListItemText primary="Whatever" />
-    </ListItem>
+    
   </div>
 );
 

@@ -107,3 +107,18 @@ class SgpaAPI(generics.ListAPIView):
         queryset = SGPA.objects.filter(student = self.request.user.profile)
         return queryset
 
+class StudentList(APIView):
+    permissions=[
+        permissions.IsAuthenticated
+    ]
+    def get(self, request, format = 'json'):
+        if self.request.user.profile.user_group!='T':
+            return Response({"message":"Not Authorised"}, status.HTTP_401_UNAUTHORIZED)
+        code = request.query_params.get('code')
+        sem = request.query_params.get('sem')
+        course_obj = Course.objects.filter(code=code)[0]
+        students = []
+        queryset = CourseEnrollment.objects.filter(teacher =request.user.profile,course = course_obj, semester = 4)
+        for x in queryset:
+            students.append([x.student.unique_id, ' '.join([x.student.firstname, x.student.lastname])])
+        return Response(students)
