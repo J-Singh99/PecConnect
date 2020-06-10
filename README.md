@@ -1,4 +1,4 @@
-# Blu-Berry
+# PecConnect
 
 
 for running the backend server go inside the backend directory and run
