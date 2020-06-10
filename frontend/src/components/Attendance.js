@@ -13,7 +13,7 @@ var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 CanvasJS.addColorSet("custom",
-  ['green', 'red']
+  ['rgb(0,128,0,0.5)', 'rgb(255,0,0,0.65)']
 )
 var styles = {
     cardTitle: {
@@ -42,11 +42,18 @@ const getCards = (attendance,classes)=>{
       backgroundColor:null,
       animationEnabled: true,
       height:200,
+      subtitles: [{
+        text: Math.trunc(obj['attended']/total*100) + '%',
+        verticalAlign: "center",
+        fontSize: 50,
+        dockInsidePlotArea: true
+      }],
       data: [{
         type: "doughnut",
-        showInLegend: true,
-        indexLabel: "{name}: {y}",
-        yValueFormatString: "#,###'%'",
+        radius:  "100%", 
+        innerRadius: "90%",
+        showInLegend: false,
+        indexLabel: "{name}",
         dataPoints: d
       }]
     }

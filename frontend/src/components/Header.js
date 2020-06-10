@@ -49,7 +49,6 @@ class Header extends React.Component{
     const guestLinks = (
       <>
       <Button color="inherit" component="a" {...{href:'/loginclient'}}> Login </Button>
-      <Button color="inherit" component="a" {...{href:'/signup'}}> Sign Up </Button>
       </>
     );
 

@@ -32,6 +32,7 @@ import compose from 'recompose/compose';
 import { withStyles } from '@material-ui/core/styles';
 import {logout} from '../actions/auth';
 import TAttendance from './TAttendance';
+import TGrades from './TGrades';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -136,8 +137,8 @@ class Main extends React.Component {
             <Switch>
               <Route exact path="/dashboard" component={()=><Dashboard classes = {classes}/>}/>
               <Route exact path="/dashboard/attendance" component={()=>this.props.user_group==='S'?<Attendance classes = {classes}/>:<TAttendance classes={classes}/>}/>
-              <Route exact path="/dashboard/grades" component={()=><Grades classes = {classes}/>}/>
-              <Route exact path="/dashboard/timetable" component={()=><Timetable classes = {classes}/>}/>
+              <Route exact path="/dashboard/grades" component={()=>this.props.user_group==='S'?<Grades classes = {classes}/>:<TGrades classes={classes}/>}/>
+              <Route exact path="/dashboard/timetable" component={()=>this.props.user_group==='S'?<Timetable classes = {classes}/>:<div><h1>Still in construction</h1></div>}/>
             </Switch>
           </Container>
           <Box pt={5}>
