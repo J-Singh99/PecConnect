@@ -60,7 +60,7 @@ const HomeContent = (props) => {
           <div className={classes.heroContent}>
             <Container maxWidth="sm">
               <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                Welcome to college++
+                Welcome to PecConnect
               </Typography>
               <Typography variant="h5" align="center" color="textSecondary" paragraph>
               The one stop for all your college needs!

@@ -61,7 +61,7 @@ class Header extends React.Component{
         <ElevationScroll {...this.props}>
           <AppBar>
             <Toolbar>
-            <Typography variant="h6" className={classes.title}>College++</Typography>
+            <Typography variant="h6" className={classes.title}>PecConnect</Typography>
             <Button color="inherit" component="a" {...{href:'/dashboard'}}>Dashboard</Button>
             <Button color ="inherit" component="a" {...{href:'/about'}} >About</Button>
             {isAuthenticated? authLinks:guestLinks}
